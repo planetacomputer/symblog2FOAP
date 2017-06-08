@@ -1,0 +1,6 @@
+parameters:
+    # dirección de correo electrónico para contacto del Blogger
+    blogger_blog.emails.contact_email: davidllanes72@gmail.com
+    blogger_blog.emails.departament.marketing: marketing@gmail.com
+    blogger_blog.emails.departament.tecnic: tecnic@gmail.com
+    blogger_blog.emails.departament.comptabilitat: comptabilitat@gmail.com
