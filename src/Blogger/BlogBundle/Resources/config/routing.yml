@@ -15,3 +15,22 @@ BloggerBlogBundle_contact:
     defaults: { _controller: BloggerBlogBundle:Page:contact }
     requirements:
         _method:  GET
+
+blogger_blog_blog_show:
+    path:  /{id}
+    defaults: { _controller: BloggerBlogBundle:Blog:show }
+    requirements:
+        _method:  GET
+        id: \d+
+
+blogger_blog_create_show:
+    path:  /create
+    defaults: { _controller: BloggerBlogBundle:Blog:create }
+    requirements:
+        _method:  GET
+
+blogger_blog_blog_edit:
+    path:  /edit/{id}
+    defaults: { _controller: BloggerBlogBundle:Blog:edit }
+    requirements:
+        _method:  GET
