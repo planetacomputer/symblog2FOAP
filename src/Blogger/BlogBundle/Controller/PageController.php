@@ -4,8 +4,11 @@ namespace Blogger\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogBundle\Entity\Enquiry;
+use Blogger\BlogBundle\Entity\Tag;
+use Blogger\BlogBundle\Entity\Blog;
 use Blogger\BlogBundle\Form\EnquiryType;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class PageController extends Controller
 {
@@ -47,4 +50,20 @@ class PageController extends Controller
 	        'form' => $form->createView()
 	    ));
 	}
+
+	public function sidebarAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $tagWeights = $em->getRepository('BloggerBlogBundle:Tag')
+                         ->getTagsCol();
+        $commentLimit   = $this->container->getParameter('blogger_blog.comments.latest_comment_limit');
+
+        $latestComments = $em->getRepository('BloggerBlogBundle:Comment')->getLatestComments($commentLimit);             
+
+        return $this->render('BloggerBlogBundle:Page:sidebar.html.twig', array(
+            'tags' => $tagWeights,
+        	'latestComments'    => $latestComments
+        ));
+    }
 }

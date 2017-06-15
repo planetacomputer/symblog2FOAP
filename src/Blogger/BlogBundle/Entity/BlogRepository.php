@@ -13,8 +13,10 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
 	public function getLatestBlogs($limit = null)
     {
         $qb = $this->createQueryBuilder('b')
-                   ->select('b')
-                   ->addOrderBy('b.created', 'DESC');
+               ->select('b', 'c', 't')
+               ->join('b.tagsCol', 't')
+               ->join('b.comments', 'c')
+               ->addOrderBy('b.created', 'DESC');
 
         if (false === is_null($limit))
             $qb->setMaxResults($limit);

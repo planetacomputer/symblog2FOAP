@@ -4,6 +4,7 @@
 namespace Blogger\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\BlogRepository")
@@ -50,6 +51,12 @@ class Blog
     protected $comments = array();
 
     /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="blogs")
+     * @ORM\JoinTable(name="blogs_tags")
+     */
+    protected $tagsCol = array();
+
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $created;
@@ -72,6 +79,7 @@ class Blog
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->tagsCol = new ArrayCollection();
         $this->setCreated(new \DateTime());
         $this->setUpdated(new \DateTime());
     }
@@ -273,5 +281,44 @@ class Blog
     public function removeComment(\Blogger\BlogBundle\Entity\Comment $comment)
     {
         $this->comments->removeElement($comment);
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
+    /**
+     * Add tagsCol
+     *
+     * @param \Blogger\BlogBundle\Entity\Tag $tagsCol
+     *
+     * @return Blog
+     */
+    public function addTagsCol(\Blogger\BlogBundle\Entity\Tag $tagsCol)
+    {
+        $this->tagsCol[] = $tagsCol;
+
+        return $this;
+    }
+
+    /**
+     * Remove tagsCol
+     *
+     * @param \Blogger\BlogBundle\Entity\Tag $tagsCol
+     */
+    public function removeTagsCol(\Blogger\BlogBundle\Entity\Tag $tagsCol)
+    {
+        $this->tagsCol->removeElement($tagsCol);
+    }
+
+    /**
+     * Get tagsCol
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTagsCol()
+    {
+        return $this->tagsCol;
     }
 }

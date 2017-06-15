@@ -4,6 +4,7 @@
 namespace Blogger\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\CommentRepository")
@@ -23,6 +24,11 @@ class Comment
      * @ORM\Column(type="string")
      */
     protected $user;
+
+    /**
+     * @ORM\Column(type="string", length=120, nullable=true)
+     */
+    protected $village;
 
     /**
      * @ORM\Column(type="text")
@@ -314,5 +320,33 @@ class Comment
     public function getMycomments()
     {
         return $this->mycomments;
+    }
+
+    public function __toString(){
+        return $this->getComment();
+    }
+
+    /**
+     * Set village
+     *
+     * @param string $village
+     *
+     * @return Comment
+     */
+    public function setVillage($village)
+    {
+        $this->village = $village;
+
+        return $this;
+    }
+
+    /**
+     * Get village
+     *
+     * @return string
+     */
+    public function getVillage()
+    {
+        return $this->village;
     }
 }

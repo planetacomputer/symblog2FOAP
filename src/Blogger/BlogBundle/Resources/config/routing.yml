@@ -34,3 +34,10 @@ blogger_blog_blog_edit:
     defaults: { _controller: BloggerBlogBundle:Blog:edit }
     requirements:
         _method:  GET
+
+blogger_blog_comment_create:
+    path:  /comment/{blog_id}
+    defaults: { _controller: BloggerBlogBundle:Comment:create }
+    requirements:
+        _method:  POST
+        blog_id: \d+

@@ -16,9 +16,28 @@
             </div>
 
             <footer class="meta">
-                <p>Comments: <a href="{{ path('blogger_blog_blog_show', { 'id': blog.id }) }}#comments">{{ blog.comments|length }}</a></p>
+                <p>Comments: <a href="{{ path('blogger_blog_blog_show', { 'id': blog.id }) }}#comments">{{ blog.comments|length }}</a>
+                
+                . Darrer comentari: 
+
+                {% if blog.comments|length > 0  %}
+
+					{{ blog.comments.last.user }}
+
+
+                	{% set recentComment = blog.comments.toArray()[blog.comments|length - 1] %}
+                	{{recentComment.created|date('h:iA, l, F j, Y') }}
+                	
+
+	          
+                {% endif %}</p>
                 <p>Posted by <span class="highlight">{{blog.author}}</span> at {{ blog.created|date('h:iA') }}</p>
-                <p>Tags: <span class="highlight">{{ blog.tags }}</span></p>
+                <p>Tags: {{ blog.tagsCol | length }} <span class="highlight">
+                    {% for tagCol in blog.tagsCol %}
+                        {{ tagCol.tagName }}
+                    {% endfor %}
+                </span></p>
+                
             </footer>
         </article>
     {% else %}
