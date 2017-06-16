@@ -59,11 +59,13 @@ class PageController extends Controller
                          ->getTagsCol();
         $commentLimit   = $this->container->getParameter('blogger_blog.comments.latest_comment_limit');
 
-        $latestComments = $em->getRepository('BloggerBlogBundle:Comment')->getLatestComments($commentLimit);             
+        $latestComments = $em->getRepository('BloggerBlogBundle:Comment')->getLatestComments($commentLimit);
+        $authors = $em->getRepository('BloggerBlogBundle:Author')->getAuthors(5);           
 
         return $this->render('BloggerBlogBundle:Page:sidebar.html.twig', array(
             'tags' => $tagWeights,
-        	'latestComments'    => $latestComments
+        	'latestComments'    => $latestComments,
+        	'authors' => $authors
         ));
     }
 }

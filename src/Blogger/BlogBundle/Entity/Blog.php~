@@ -56,6 +56,13 @@ class Blog
      */
     protected $tagsCol = array();
 
+     /**
+     * Many Blogs have One Author.
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="blogs")
+     * @ORM\JoinColumn(name="autor_id", referencedColumnName="id")
+     */
+    protected $autor;
+
     /**
      * @ORM\Column(type="datetime")
      */

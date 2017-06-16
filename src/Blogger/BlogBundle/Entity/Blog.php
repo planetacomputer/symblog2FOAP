@@ -56,6 +56,13 @@ class Blog
      */
     protected $tagsCol = array();
 
+     /**
+     * Many Blogs have One Author.
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="blogs")
+     * @ORM\JoinColumn(name="autor_id", referencedColumnName="id")
+     */
+    protected $autor;
+
     /**
      * @ORM\Column(type="datetime")
      */
@@ -320,5 +327,29 @@ class Blog
     public function getTagsCol()
     {
         return $this->tagsCol;
+    }
+
+    /**
+     * Set autor
+     *
+     * @param \Blogger\BlogBundle\Entity\Author $autor
+     *
+     * @return Blog
+     */
+    public function setAutor(\Blogger\BlogBundle\Entity\Author $autor = null)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * Get autor
+     *
+     * @return \Blogger\BlogBundle\Entity\Author
+     */
+    public function getAutor()
+    {
+        return $this->autor;
     }
 }

@@ -30,22 +30,6 @@ class Tag
      */
     protected $blogs;
 
-
-    protected $num;
-
-    public function getNum()
-    {
-        return $this->num;
-    }
-
-    public function setNum($num)
-    {
-        $this->num = $num;
-
-        return $this;
-    }
-
-
     public function __construct() {
         $this->blogs = new ArrayCollection();
     }

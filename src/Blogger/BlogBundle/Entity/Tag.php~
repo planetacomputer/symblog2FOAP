@@ -28,8 +28,7 @@ class Tag
      * @ORM\ManyToMany(targetEntity="Blog", mappedBy="tagsCol")
      * @ORM\JoinTable(name="blogs_tags")
      */
-    protected $blogs  = array();
-
+    protected $blogs;
 
     public function __construct() {
         $this->blogs = new ArrayCollection();

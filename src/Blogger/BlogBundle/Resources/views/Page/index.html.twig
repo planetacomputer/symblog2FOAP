@@ -31,7 +31,7 @@
 
 	          
                 {% endif %}</p>
-                <p>Posted by <span class="highlight">{{blog.author}}</span> at {{ blog.created|date('h:iA') }}</p>
+                <p>Posted by <span class="highlight">{{blog.autor.nom}}</span> at {{ blog.created|date('h:iA') }}</p>
                 <p>Tags: {{ blog.tagsCol | length }} <span class="highlight">
                     {% for tagCol in blog.tagsCol %}
                         {{ tagCol.tagName }}

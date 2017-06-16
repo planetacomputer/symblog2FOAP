@@ -1,0 +1,62 @@
+<?php
+// src/Blogger/BlogBundle/Entity/Author.php
+
+namespace Blogger\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\AuthorRepository")
+ * @ORM\Table(name="author")
+ */
+class Author
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $nom;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $cognom;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $dataNaixement;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $dataAlta;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    protected $foto;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $descripcio;
+
+    /**
+     * One Author has Many Blogs.
+     * @ORM\OneToMany(targetEntity="Blog", mappedBy="autor")
+     */
+    protected $blogs;
+
+    public function __construct() {
+        $this->blogs = new ArrayCollection();
+    }
+
+}

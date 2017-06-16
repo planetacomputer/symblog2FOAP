@@ -32,3 +32,14 @@
         <p>There are no recent comments</p>
     {% endfor %}
 </section>
+
+<section class="section">
+    <header>
+        <h3>Les nostres plomes...</h3>
+    </header>
+    {% for author in authors %}
+        <article class="comment">
+            {{ author.nom }} ({{ author.blogs | length }})
+        </article>
+    {% endfor %}
+</section>
